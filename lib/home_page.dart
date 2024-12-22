@@ -175,8 +175,9 @@ class MyHomePageState extends State<MyHomePage> {
 
   Future<String?> _getSavedDir() async {
     String? externalStorageDirPath;
-    externalStorageDirPath =
-        "${(await getExternalStorageDirectory())!.path}/app";
+    externalStorageDirPath = Platform.isAndroid
+        ? "${(await getExternalStorageDirectory())!.path}/app"
+        : "${(await getApplicationDocumentsDirectory()).path}/app";
 
     return externalStorageDirPath;
   }
